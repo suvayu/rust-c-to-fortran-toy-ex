@@ -1,0 +1,11 @@
+*~
+\#*\#
+
+
+# build output
+build
+target/*
+[_.]build
+
+# typical cache directories
+.*[cC]ache*

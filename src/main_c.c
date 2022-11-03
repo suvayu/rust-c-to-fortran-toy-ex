@@ -9,14 +9,14 @@ int main(int argc, char * argv[])
   float b = 4;
   switch (argc) {
     case 1:
-      printf("Missing name");
+      printf("Missing name\n");
       break;
   case 2:
     printf("name: %s\n", argv[1]);
     printf("area: %f\n", area(argv[1], strlen(argv[1]), a, b));
     break;
   default:
-    printf("Usage: %s <name>", argv[0]);
+    printf("Usage: %s <name>\n", argv[0]);
   }
   return 0;
 }

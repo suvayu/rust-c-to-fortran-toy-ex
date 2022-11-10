@@ -4,12 +4,11 @@ use std::env;
 use std::ffi::CString;
 
 extern "C" {
-    // fn area(a: &f32, b: &f32) -> f32;
     fn area(
         name: *const libc::c_char,
         name_length: libc::size_t,
-        a: libc::c_float,
-        b: libc::c_float,
+        a: libc::c_float, // f32
+        b: libc::c_float, // f32
     ) -> f32;
 }
 
@@ -17,13 +16,10 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     match args.len() {
-        1 => {
-            println!("Missing name");
-        }
-        2 => {
+        4 => {
             let name = CString::new(args[1].as_str()).unwrap();
-            let a: f32 = 3.0;
-            let b: f32 = 4.0;
+            let a: f32 = args[2].parse::<f32>().unwrap();
+            let b: f32 = args[3].parse::<f32>().unwrap();
             let res = unsafe {
                 area(
                     name.as_ptr(),
@@ -35,7 +31,7 @@ fn main() {
             println!("area: {}", res);
         }
         _ => {
-            println!("Usage: {} <name>", args[0]);
+            println!("Usage: {} <name> <side1> <side2>", args[0]);
             return;
         }
     }
